@@ -1,0 +1,77 @@
+.dashboard {
+  background: #444;
+  padding: 30px;
+  margin: 30px 0;
+  .card {
+    background: #555;
+    border-radius: 0;
+    .edit-btn {
+      border-color: #ebb401;
+      padding: 3px 10px;
+      font-size: 12px;
+      color: #ebb401;
+      text-transform: uppercase;
+    }
+  }
+  .user-profile {
+    position: relative;
+    text-align: center;
+    //  padding-top:40px;
+    //  margin-top:40px;
+    .profile-img {
+      height: 70px;
+      width: 70px;
+      border: 1px solid #ebb401;
+      border-radius: 50%;
+      padding: 5px;
+      margin: 0 auto;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        background: #333;
+        padding: 10px;
+      }
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    .btn-border {
+      color: #ebb401;
+      border-color: #ebb401;
+    }
+    .reward-point {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: #ebb401;
+        line-height: 1;
+        i {
+          font-size: 30px;
+        }
+      }
+      p {
+        text-align: left;
+        font-size: 14px;
+        padding: 0 15px;
+        margin-bottom: 0;
+        span {
+          display: block;
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .address-info {
+    .card-header {
+      color: #fff;
+    }
+    span {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+}

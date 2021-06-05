@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "username": "superadmin",
+      "password": "$2a$10$zUM6bKxyDDHPEgaLjshFNOGrsChiAt4/QPs7w3OdWXnvNlxvlt0L6",
+      "firstName": "admin",
+      "lastName": "admin",
+      "email": "superadmin@oasys.com.np",
+      "type": "admin",
+      "roles": ["Super Admin"]
+    },
+    {
+      "username": "admin",
+      "password": "$2a$10$zUM6bKxyDDHPEgaLjshFNOGrsChiAt4/QPs7w3OdWXnvNlxvlt0L6",
+      "firstName": "admin",
+      "lastName": "admin",
+      "email": "admin@oasys.com.np",
+      "type": "admin",
+      "roles": ["Admin"]
+    }
+  ],
+  "roles": [
+    {
+      "name": "Super Admin",
+      "isAdmin": true
+    },
+    {
+      "name": "Admin"
+    }
+  ],
+  "roleMenus": [
+    {
+      "name": "Role",
+      "key": "role",
+      "actions": [
+        { "name": "View Role", "key": "view" },
+        { "name": "Add Role", "key": "add" },
+        { "name": "Edit Role", "key": "edit" },
+        { "name": "Delete Role", "key": "delete" }
+      ]
+    },
+    {
+      "name": "User",
+      "key": "user",
+      "actions": [
+        { "name": "View User", "key": "view" },
+        { "name": "Add User", "key": "add" },
+        { "name": "Edit User", "key": "edit" },
+        { "name": "Delete User", "key": "delete" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+/*!
+ =========================================================
+ * ArchitectUI ReactJS Dashboard Theme - v1.0.0
+ =========================================================
+ * Product Page: https://dashboardpack.com
+ * Copyright 2019 DashboardPack (https://dashboardpack.com)
+ * Licensed under MIT (https://github.com/DashboardPack/architectui-react-theme-free/blob/master/LICENSE)
+ =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
+
+// BOOTSTRAP 4 VARIABLES
+
+@import "components/bootstrap4/functions";
+@import "components/bootstrap4/variables";
+@import "components/bootstrap4/mixins";
+
+// ArchitectUI Themes Variables
+@import "themes/layout-variables";
+
+// LAYOUT
+@import "layout/layout";
+
+// UTILS
+// @import "utils/helpers";
+@import "utils/backgrounds";
+@import "utils/animate";
+// @import "utils/comps-animations";
+
+// ELEMENTS
+
+// @import "elements/buttons";
+@import "elements/navs";
+// @import "elements/badges";
+// @import "elements/cards";
+// @import "elements/tabs";
+// @import "elements/progressbar";
+
+// DASHBOARD BOXES
+
+@import "widgets/chart-boxes/chart-boxes";
+
+// COMPONENTS
+
+// Perfect Scrollbar
+@import "components/perfect-scrollbar/perfect-scrollbar";
+
+// Hamburger Button
+@import "components/hamburgers/hamburgers";
+
+// Popovers & Tooltips
+@import "components/popovers-tooltips/popovers-tooltips";
+
+// Icons
+// @import "components/icons/p7icons";
+// @import "components/icons/linearicons";
+
+// FORMS
+
+// Responsive
+
+@import "layout/responsive/responsive-base";

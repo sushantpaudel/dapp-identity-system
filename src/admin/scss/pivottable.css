@@ -1,0 +1,4 @@
+.pvtAxisContainer li span.pvtAttr {
+  white-space: unset !important;
+  width: 100px;
+}

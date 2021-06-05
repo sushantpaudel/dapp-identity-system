@@ -1,0 +1,17 @@
+.admin-sidebar {
+  margin-top: var(--navbar-height);
+  position: fixed;
+  background-color: var(--bg-secondary);
+  width: 200px;
+  height: 100vh;
+}
+
+.admin-sidebar .admin-nav-item {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.admin-sidebar .admin-nav-title {
+  cursor: pointer;
+  color: var(--text-primary);
+}

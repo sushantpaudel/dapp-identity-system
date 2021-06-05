@@ -1,0 +1,10 @@
+.admin-app {
+  width: 100%;
+}
+
+.admin-main {
+  padding-top: var(--navbar-height);
+  margin-left: 200px;
+}
+
+@import './scss/style.scss';

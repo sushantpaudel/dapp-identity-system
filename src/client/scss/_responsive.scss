@@ -1,0 +1,26 @@
+// TAB ko laagi
+@media (max-width: 991px) {
+}
+
+// MOBILE ko laagi
+@media (max-width: 767px) {
+  .main-banner {
+    .banner-item {
+      img {
+        height: 200px;
+      }
+    }
+  }
+  .invoice {
+    .btn-primary {
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  .search-form {
+    margin-top: 10px;
+  }
+  .wishlist-cart {
+    text-align: center !important;
+  }
+}

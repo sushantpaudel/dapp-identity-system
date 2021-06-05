@@ -1,0 +1,14 @@
+/node_modules/
+/node_modules
+/tmp/
+/temp/
+/logs/
+/build/
+/resources/
+
+.env
+.eslintcache
+.env.production
+.env.staging
+debug.log
+.vscode
