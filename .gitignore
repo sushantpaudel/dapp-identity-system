@@ -4,6 +4,7 @@
 /temp/
 /logs/
 /build/
+build/
 /resources/
 
 .env
