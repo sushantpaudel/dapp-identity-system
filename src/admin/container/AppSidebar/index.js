@@ -20,13 +20,8 @@ class AppSidebar extends Component {
   };
 
   render() {
-    let {
-      backgroundColor,
-      enableBackgroundImage,
-      enableSidebarShadow,
-      backgroundImage,
-      backgroundImageOpacity,
-    } = this.props;
+    let { backgroundColor, enableBackgroundImage, enableSidebarShadow, backgroundImage, backgroundImageOpacity } =
+      this.props;
 
     return (
       <Fragment>

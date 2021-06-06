@@ -19,6 +19,21 @@ export const MainNav = [
 
 export const SettingsNav = [
   {
+    label: <MyTranslation>Digital Identity</MyTranslation>,
+    icon: 'fa fa-users',
+    permission: 'user',
+    content: [
+      {
+        label: <MyTranslation>Digital Identities</MyTranslation>,
+        to: `#${routes.digitalIdentities}`,
+      },
+      {
+        label: <MyTranslation>Add Digital Identity</MyTranslation>,
+        to: `#${routes.digitalIdentityAdd}`,
+      },
+    ],
+  },
+  {
     label: <MyTranslation>Users</MyTranslation>,
     icon: 'fa fa-user',
     permission: 'user',

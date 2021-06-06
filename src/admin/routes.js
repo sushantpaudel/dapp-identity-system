@@ -14,6 +14,9 @@ const Users = React.lazy(() => import('admin/views/Users/Users'));
 const AddUsers = React.lazy(() => import('admin/views/Users/AddUser'));
 const EditUsers = React.lazy(() => import('admin/views/Users/EditUser'));
 
+const DigitalIdentities = React.lazy(() => import('admin/views/DigitalIdentity/DigitalIdentities'));
+const AddDigitalIdentity = React.lazy(() => import('admin/views/DigitalIdentity/AddDigitalIdentity'));
+const EditDigitalIdentity = React.lazy(() => import('admin/views/DigitalIdentity/EditDigitalIdentity'));
 
 const exportRoutes = [
   { path: metaRoutes.home, exact: true, name: 'Dashboard', component: Dashboard },
@@ -26,6 +29,9 @@ const exportRoutes = [
   { path: metaRoutes.users, exact: true, name: 'Users', component: Users, permission: 'user.view' },
   { path: metaRoutes.usersAdd, exact: true, name: 'Add Users', component: AddUsers, permission: 'user.add' },
   { path: metaRoutes.usersEdit, exact: true, name: 'Edit Users', component: EditUsers, permission: 'user.edit' },
+  { path: metaRoutes.digitalIdentities, exact: true, name: 'Digital Identities', component: DigitalIdentities, permission: 'digitalIdentity.view' },
+  { path: metaRoutes.digitalIdentityAdd, exact: true, name: 'Add Digital Identity', component: AddDigitalIdentity, permission: 'digitalIdentity.add' },
+  { path: metaRoutes.digitalIdentityEdit, exact: true, name: 'Edit Digital Identity', component: EditDigitalIdentity, permission: 'digitalIdentity.edit' },
 ];
 
 export default exportRoutes;

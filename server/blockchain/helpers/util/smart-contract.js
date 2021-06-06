@@ -10,7 +10,9 @@ class SmartContract {
   address = BLOCKCHAIN.ADDRESS;
   infuraUrl = BLOCKCHAIN.INFURA_URL;
   privateKey = BLOCKCHAIN.PRIVATE_KEY;
-  async init(Contract) {
+  async init(Contract, address, privateKey) {
+    this.address = address || this.address;
+    this.privateKey = privateKey || this.privateKey;
     this.web3 = new Web3(BLOCKCHAIN.INFURA_URL);
     this.networkId = await this.web3.eth.net.getId();
     this.myContract = new this.web3.eth.Contract(Contract.abi, Contract.networks[this.networkId].address);

@@ -15,6 +15,11 @@ const adminRoutes = {
   rolesAdd: '/admin/roles/add',
   rolesView: '/admin/roles/:id',
   rolesEdit: '/admin/roles/edit',
+  // DIGITAL IDENTITY
+  digitalIdentities: '/admin/digital-identity',
+  digitalIdentityAdd: '/admin/digital-identity/add',
+  digitalIdentityEdit: '/admin/digital-identity/edit',
+  digitalIdentityView: '/admin/digital-identity/:id',
 };
 
 export default adminRoutes;

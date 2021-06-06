@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from "react";
-import {withRouter} from "react-router-dom";
-import MetisMenu from "react-metismenu";
-import {connect} from "react-redux";
-import {MainNav, SettingsNav, generateNavItems, AdminNav} from "./NavItems";
+import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
+import MetisMenu from 'react-metismenu';
+import { connect } from 'react-redux';
+import { MainNav, SettingsNav, generateNavItems, AdminNav } from './NavItems';
 
 class Nav extends Component {
   state = {};
@@ -52,6 +52,6 @@ class Nav extends Component {
   }
 }
 
-export default connect((state) => ({
+export default connect(state => ({
   p: state.permissions,
 }))(withRouter(Nav));
