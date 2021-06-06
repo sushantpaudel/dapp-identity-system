@@ -14,15 +14,15 @@ class BlockchainUser {
     const accounts = await this.web3.eth.getAccounts();
     const newAccount = await this.web3.eth.accounts.create();
     await this.web3.eth.getBalance(accounts[0], (err, bal) => {
-      console.log('Ganache balance', bal);
+      // console.log('Ganache balance', bal);
     });
     await this.web3.eth.sendTransaction({
-      to: newAccount.address,
       from: accounts[0],
-      value: this.web3.utils.toWei('0.5', 'ether'),
+      to: newAccount.address,
+      value: this.web3.utils.toWei('1', 'ether'),
     });
     await this.web3.eth.getBalance(newAccount.address, (err, bal) => {
-      console.log('New Account balance', bal);
+      // console.log('New Account balance', bal);
     });
     return newAccount;
   }

@@ -6,6 +6,7 @@ const httpStatus = require('http-status');
 const DigitalIdentityContract = require('../../blockchain/helpers/digital-identity');
 const blockchainUserObj = require('../../blockchain/helpers/blockchain-user');
 const { getPagination, getPagingData } = require('../util/pagination');
+const blockchainUser = require('../../blockchain/helpers/blockchain-user');
 
 const getIdentityPayload = digitalIdentity => {
   return {
@@ -40,7 +41,11 @@ class IdentityController {
         raw: true,
         where: { id: req.params.id, isDeleted: false },
       });
-      await DigitalIdentityContract.initContract(digitalIdentity.publicKey, digitalIdentity.privateKey);
+      await DigitalIdentityContract.initContract(
+        digitalIdentity.publicKey,
+        digitalIdentity.privateKey,
+        digitalIdentity.contractAddress,
+      );
       delete digitalIdentity.privateKey;
       const payload = await DigitalIdentityContract.retrieveIdentity();
       respond(res, httpStatus.OK, 'Successful!', {
@@ -56,14 +61,19 @@ class IdentityController {
   static async post(req, res) {
     const digitalIdentity = req.body;
     const newAccount = await blockchainUserObj.addAccount();
-    DigitalIdentity.create({
-      publicKey: newAccount.address,
-      privateKey: newAccount.privateKey,
-      name: digitalIdentity.name,
-      citizenshipNumber: digitalIdentity.citizenshipNumber,
-    })
-      .then(async () => {
-        await DigitalIdentityContract.initContract(newAccount.address, newAccount.privateKey);
+    sequelize
+      .transaction(async transaction => {
+        const contractAddress = await DigitalIdentityContract.deployContract(newAccount.address, newAccount.privateKey);
+        await DigitalIdentity.create(
+          {
+            publicKey: newAccount.address,
+            privateKey: newAccount.privateKey,
+            name: digitalIdentity.name,
+            citizenshipNumber: digitalIdentity.citizenshipNumber,
+            contractAddress,
+          },
+          { transaction },
+        );
         const result = await DigitalIdentityContract.createIdentity(getIdentityPayload(digitalIdentity));
         return result;
       })
@@ -79,9 +89,13 @@ class IdentityController {
     const digitalIdentity = req.body;
     const digitalIdentityDb = await DigitalIdentity.findOne({
       where: { id: digitalIdentity.id },
-      attributes: ['publicKey', 'privateKey'],
+      attributes: ['publicKey', 'privateKey', 'contractAddress'],
     });
-    await DigitalIdentityContract.initContract(digitalIdentityDb.publicKey, digitalIdentityDb.privateKey);
+    await DigitalIdentityContract.initContract(
+      digitalIdentityDb.publicKey,
+      digitalIdentityDb.privateKey,
+      digitalIdentityDb.contractAddress,
+    );
     sequelize
       .transaction(async transaction => {
         await DigitalIdentity.update(digitalIdentity, {

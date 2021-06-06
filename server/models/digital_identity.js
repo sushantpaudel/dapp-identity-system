@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       citizenshipNumber: DataTypes.STRING,
       publicKey: DataTypes.STRING,
       privateKey: DataTypes.STRING,
+      contractAddress: DataTypes.STRING,
     },
     {
       sequelize,

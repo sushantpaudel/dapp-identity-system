@@ -18,6 +18,9 @@ module.exports = {
       privateKey: {
         type: Sequelize.STRING,
       },
+      contractAddress: {
+        type: Sequelize.STRING,
+      },
       citizenshipNumber: {
         type: Sequelize.STRING,
       },

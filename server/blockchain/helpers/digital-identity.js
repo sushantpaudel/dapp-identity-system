@@ -7,9 +7,13 @@ class DigitalIdentity extends SmartContract {
       throw new Error(`You cannot invoke these functions without initialization`);
     }
   }
-  async initContract(address, privateKey) {
+  async initContract(address, privateKey, contractAddress) {
     this.checkParams();
-    await this.init(Contract, address, privateKey);
+    await this.init(Contract, address, privateKey, contractAddress);
+  }
+  async deployContract(address, privateKey) {
+    this.checkParams();
+    return await this.deploy(Contract, address, privateKey);
   }
   async retrieveIdentity() {
     this.checkParams();
@@ -18,6 +22,13 @@ class DigitalIdentity extends SmartContract {
     return value;
   }
   async createIdentity(payload) {
+    this.checkParams();
+    const ipfsResult = await this.addPayloadIPFS(payload);
+    const transaction = this.myContract.methods.createIdentity(ipfsResult.path);
+    const receipt = await this.signTransaction(transaction);
+    return receipt;
+  }
+  async updateIdentity(payload) {
     this.checkParams();
     const ipfsResult = await this.addPayloadIPFS(payload);
     const transaction = this.myContract.methods.createIdentity(ipfsResult.path);
