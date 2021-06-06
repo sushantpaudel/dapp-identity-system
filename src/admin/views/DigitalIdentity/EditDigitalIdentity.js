@@ -13,13 +13,13 @@ const EditUser = props => {
       getDigitalIdentity(digitalIdentityId).then(response => {
         if (!response.success) {
           toast.error(response.message);
-          props.history.push(routes.users);
+          props.history.push(routes.digitalIdentities);
         } else {
           setUser(response.data);
         }
       });
     } else {
-      props.history.push(routes.users);
+      props.history.push(routes.digitalIdentities);
     }
   }, []); //eslint-disable-line
 
@@ -46,7 +46,13 @@ const EditUser = props => {
     });
   };
   return (
-    <DigitalIdentityForm title="Edit Digital Identity" digitalIdentity={user} onChange={onChange} onSubmit={onSubmit} />
+    <DigitalIdentityForm
+      isEdit
+      title="Edit Digital Identity"
+      digitalIdentity={user}
+      onChange={onChange}
+      onSubmit={onSubmit}
+    />
   );
 };
 

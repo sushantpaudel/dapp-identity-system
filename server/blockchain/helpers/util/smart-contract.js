@@ -1,6 +1,8 @@
 const { BLOCKCHAIN } = require('../../../config/credentials');
 const Web3 = require('web3');
 const ipfsClient = require('ipfs-http-client');
+const BufferList = require('bl');
+const logger = require('../../../config/logger');
 
 class SmartContract {
   web3;
@@ -11,8 +13,11 @@ class SmartContract {
   infuraUrl = BLOCKCHAIN.INFURA_URL;
   privateKey = BLOCKCHAIN.PRIVATE_KEY;
   async init(Contract, address, privateKey) {
-    this.address = address || this.address;
-    this.privateKey = privateKey || this.privateKey;
+    if (!Contract || !address || !privateKey) {
+      throw new Error(`Missing parameters while initializing Smart Contract`);
+    }
+    this.address = address;
+    this.privateKey = privateKey;
     this.web3 = new Web3(BLOCKCHAIN.INFURA_URL);
     this.networkId = await this.web3.eth.net.getId();
     this.myContract = new this.web3.eth.Contract(Contract.abi, Contract.networks[this.networkId].address);
@@ -28,8 +33,19 @@ class SmartContract {
     return result;
   }
   async getPayloadIPFS(hash) {
-    const result = await this.ipfs.get(hash);
-    return result;
+    try {
+      const content = new BufferList();
+      for await (const file of this.ipfs.get(hash)) {
+        for await (const chunk of file.content) {
+          content.append(chunk);
+        }
+      }
+      const result = JSON.parse(content.toString());
+      return result;
+    } catch (err) {
+      logger.error(err);
+      return {};
+    }
   }
   async signTransaction(transaction) {
     const gas = await transaction.estimateGas({ from: this.address });
