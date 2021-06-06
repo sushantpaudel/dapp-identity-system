@@ -5,8 +5,8 @@ const { respond } = require('../../util/response');
 const httpStatus = require('http-status');
 const DigitalIdentityContract = require('../../blockchain/helpers/digital-identity');
 const blockchainUserObj = require('../../blockchain/helpers/blockchain-user');
+const Op = require('sequelize').Op;
 const { getPagination, getPagingData } = require('../util/pagination');
-const blockchainUser = require('../../blockchain/helpers/blockchain-user');
 
 const getIdentityPayload = digitalIdentity => {
   return {
@@ -21,7 +21,17 @@ class IdentityController {
     const { pageNumber, pageSize, searchString } = req.query;
     const { limit, offset } = getPagination(pageNumber, pageSize);
     DigitalIdentity.findAndCountAll({
-      where: { isDeleted: false },
+      where: {
+        isDeleted: false,
+        ...(searchString
+          ? {
+              [Op.or]: [
+                ...(searchString ? [{ name: { [Op.startsWith]: searchString } }] : []),
+                ...(searchString ? [{ citizenshipNumber: { [Op.startsWith]: searchString } }] : []),
+              ],
+            }
+          : {}),
+      },
       attributes: {
         exclude: ['privateKey'],
       },
