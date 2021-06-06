@@ -1,0 +1,9 @@
+package-lock.json
+.vscode
+node_modules/
+build/
+tests/
+public/
+resources/
+temp/
+tmp/

@@ -1,0 +1,44 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
+  "plugins": ["react", "prettier", "eslint-plugin-react"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-no-undef": ["warn", { "allowGlobals": true }],
+    "no-unused-vars": "warn",
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "globals": {
+    "document": true,
+    "window": true,
+    "Promise": true
+  },
+  "overrides": [
+    {
+      "files": ["routes.js"],
+      "rules": {
+        "prettier/prettier": [
+          "warn",
+          {
+            "printWidth": 200,
+            "endOfLine": "auto"
+          }
+        ]
+      }
+    }
+  ]
+}

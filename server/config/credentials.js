@@ -20,3 +20,12 @@ module.exports.ESEWA = {
 
 module.exports.SERVER_PORT = process.env.SERVER_PORT;
 module.exports.HEROKU_SERVER = process.env.HEROKU_SERVER;
+
+module.exports.BLOCKCHAIN = {
+  ADDRESS: process.env.BLOCKCHAIN_ADDRESS,
+  PRIVATE_KEY: process.env.BLOCKCHAIN_PRIVATE_KEY,
+  INFURA_URL: process.env.BLOCKCHAIN_INFURA_URL,
+  IPFS_HOST: process.env.BLOCKCHAIN_IPFS_HOST,
+  IPFS_PORT: process.env.BLOCKCHAIN_IPFS_PORT,
+  IPFS_PROTOCOL: process.env.BLOCKCHAIN_IPFS_PROTOCOL,
+};

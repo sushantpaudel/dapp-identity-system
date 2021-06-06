@@ -72,7 +72,6 @@ const checkPermission = (item, permissions) => {
   if (item.permission) {
     return _.get(permissions, item.permission);
   }
-  console.log(item);
   return true;
 };
 
