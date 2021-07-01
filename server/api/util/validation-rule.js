@@ -9,7 +9,10 @@ const validator = (body, rules, customMessages, callback) => {
 module.exports = (validationRule, customMessages) => (req, res, next) => {
   validator(req.body, validationRule, customMessages, (err, status) => {
     if (!status) {
-      logger.error(err);
+      logger.error({
+        body: req.body,
+        error: err,
+      });
       res.status(412).send({
         success: false,
         message: 'Validation failed',

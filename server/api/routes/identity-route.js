@@ -2,7 +2,7 @@ const router = require('express').Router();
 const auth = require('../../config/auth');
 const IdentityController = require('../controller/identity-controller');
 
-router.get('/digital-identity', IdentityController.getAll);
+router.get('/digital-identity', auth.required, IdentityController.getAll);
 
 router.get('/digital-identity/:id', auth.required, IdentityController.getOne);
 

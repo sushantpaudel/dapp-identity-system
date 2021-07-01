@@ -73,7 +73,7 @@ class IdentityController {
     const newAccount = await blockchainUserObj.addAccount();
     sequelize
       .transaction(async transaction => {
-        const contractAddress = await DigitalIdentityContract.deployContract(newAccount.address, newAccount.privateKey);
+        const contractAddress = await DigitalIdentityContract.initContract(newAccount.address, newAccount.privateKey);
         await DigitalIdentity.create(
           {
             publicKey: newAccount.address,

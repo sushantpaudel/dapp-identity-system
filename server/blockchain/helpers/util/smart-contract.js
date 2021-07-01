@@ -14,7 +14,7 @@ class SmartContract {
   infuraUrl = BLOCKCHAIN.INFURA_URL;
   privateKey = BLOCKCHAIN.PRIVATE_KEY;
   async init(Contract, address, privateKey, contractAddress) {
-    if (!Contract || !address || !privateKey || !contractAddress) {
+    if (!Contract || !address || !privateKey) {
       throw new Error(`Missing parameters while initializing Smart Contract`);
     }
     this.ipfs = ipfsClient.create({
@@ -26,7 +26,9 @@ class SmartContract {
     this.privateKey = privateKey;
     this.web3 = new Web3(BLOCKCHAIN.INFURA_URL);
     this.networkId = await this.web3.eth.net.getId();
-    this.myContract = new this.web3.eth.Contract(Contract.abi, contractAddress);
+    const contractAddressStored = contractAddress || Contract.networks[this.networkId].address;
+    this.myContract = new this.web3.eth.Contract(Contract.abi, contractAddressStored);
+    return this.myContract.options.address;
   }
   async deploy(Contract, address, privateKey) {
     if (!Contract || !address || !privateKey) {

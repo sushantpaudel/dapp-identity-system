@@ -16,7 +16,7 @@ contract DigitalIdentity {
     _;
   }
 
-  function createIdentity(string memory _contentAddress) public onlyOwner {
+  function createIdentity(string memory _contentAddress) public {
     require(bytes(_contentAddress).length > 0, 'Invalid address');
     identities[msg.sender] = Identity(msg.sender, _contentAddress);
   }
