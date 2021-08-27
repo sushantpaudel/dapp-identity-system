@@ -48,6 +48,16 @@
         { "name": "Edit User", "key": "edit" },
         { "name": "Delete User", "key": "delete" }
       ]
+    },
+    {
+      "name": "Digital Identity",
+      "key": "digitalIdentity",
+      "actions": [
+        { "name": "View Digital Identity", "key": "view" },
+        { "name": "Add Digital Identity", "key": "add" },
+        { "name": "Edit Digital Identity", "key": "edit" },
+        { "name": "Delete Digital Identity", "key": "delete" }
+      ]
     }
   ]
 }
