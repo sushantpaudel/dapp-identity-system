@@ -2,10 +2,10 @@ const { BLOCKCHAIN } = require('../../../config/credentials');
 const Web3 = require('web3');
 const ipfsClient = require('ipfs-http-client');
 const BufferList = require('bl');
-const logger = require('../../../config/logger');
 const blockchainUser = require('../blockchain-user');
+const RSAAlgorithm = require('./rsa-algorithm');
 
-class SmartContract {
+class SmartContract extends RSAAlgorithm {
   web3;
   networkId;
   myContract;
@@ -51,7 +51,8 @@ class SmartContract {
     return this.myContract.options.address;
   }
   async addPayloadIPFS(payload) {
-    var buf = Buffer.from(JSON.stringify(payload));
+    const ipfsPayload = this.encryptStringWithRsaPublicKey(JSON.stringify(payload), this.address);
+    var buf = Buffer.from(ipfsPayload);
     const result = await this.ipfs.add(buf);
     return result;
   }
@@ -63,8 +64,9 @@ class SmartContract {
           content.append(chunk);
         }
       }
-      const result = JSON.parse(content.toString());
-      return result;
+      const ipfsPayload = content.toString();
+      const result = this.decryptStringWithRsaPrivateKey(ipfsPayload, this.privateKey);
+      return JSON.parse(result);
     } catch (err) {
       return {};
     }
