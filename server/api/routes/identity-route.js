@@ -8,6 +8,8 @@ router.get('/digital-identity/:id', auth.required, IdentityController.getOne);
 
 router.post('/digital-identity', auth.required, IdentityController.post);
 
+router.post('/digital-identity/central', auth.required, IdentityController.postCentral);
+
 router.put('/digital-identity', auth.required, IdentityController.put);
 
 router.delete('/digital-identity/:id', auth.required, IdentityController.delete);

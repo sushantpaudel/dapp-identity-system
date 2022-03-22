@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       isDeleted: DataTypes.BOOLEAN,
       name: DataTypes.STRING,
       citizenshipNumber: DataTypes.STRING,
+      address: DataTypes.STRING,
+      phoneNumber: DataTypes.STRING,
       publicKey: DataTypes.STRING,
       privateKey: DataTypes.STRING,
       contractAddress: DataTypes.STRING,

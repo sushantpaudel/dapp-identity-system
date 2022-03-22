@@ -95,6 +95,28 @@ class IdentityController {
         respond(res, httpStatus.INTERNAL_SERVER_ERROR, 'Unsuccessful!');
       });
   }
+  static async postCentral(req, res) {
+    const digitalIdentity = req.body;
+    sequelize
+      .transaction(async transaction => {
+        return DigitalIdentity.create(
+          {
+            name: digitalIdentity.name,
+            citizenshipNumber: digitalIdentity.citizenshipNumber,
+            phoneNumber: digitalIdentity.phoneNumber,
+            address: digitalIdentity.address,
+          },
+          { transaction },
+        );
+      })
+      .then(() => {
+        respond(res, httpStatus.OK, 'Central Digital identity data added successfully!', digitalIdentity);
+      })
+      .catch(err => {
+        logger.error(err);
+        respond(res, httpStatus.INTERNAL_SERVER_ERROR, 'Unsuccessful!');
+      });
+  }
   static async put(req, res) {
     const digitalIdentity = req.body;
     const digitalIdentityDb = await DigitalIdentity.findOne({
