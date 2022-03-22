@@ -24,10 +24,10 @@ class BlockchainUser {
     await this.web3.eth.getBalance(newAccount.address, (err, bal) => {
       // console.log('New Account balance', bal);
     });
-    // return {
-    //   address: '0xd4769A5Cfa50c7F37D021E3937D6D95641CC6A1b',
-    //   privateKey: '439eeab6c16ba616bffb609cb1f991d5b9ea3d30402f981e0377d061b8e9fdb5',
-    // };
+    return {
+      address: BLOCKCHAIN.ADDRESS,
+      privateKey: BLOCKCHAIN.PRIVATE_KEY,
+    };
     return newAccount;
   }
 }
